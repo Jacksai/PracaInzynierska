@@ -50,3 +50,4 @@ crashlytics-build.properties
 .DS_store
 /build
 /gradle
+/classes

@@ -1,4 +1,4 @@
-package com.jacksai.cinema;
+package com.jacksai.cinema.repository;
 
 
 import com.jacksai.cinema.model.User;

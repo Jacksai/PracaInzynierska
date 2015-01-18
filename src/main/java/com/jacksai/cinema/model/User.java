@@ -1,7 +1,5 @@
 package com.jacksai.cinema.model;
 
-
-import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Entity
