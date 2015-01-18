@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "HALL")
 public class Hall {
+
     @Id @GeneratedValue
     @Column(name = "ID")
     private Long id;

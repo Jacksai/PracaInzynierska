@@ -32,7 +32,7 @@ public class Reservation {
 
     @JoinColumn(name = "SHOW_ID")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Show show;
+    private Showing show;
 
     @Column(name = "IS_FINALIZED")
     private boolean finalized;
@@ -93,11 +93,11 @@ public class Reservation {
         this.reservationState = reservationState;
     }
 
-    public Show getShow() {
+    public Showing getShow() {
         return show;
     }
 
-    public void setShow(Show show) {
+    public void setShow(Showing show) {
         this.show = show;
     }
 

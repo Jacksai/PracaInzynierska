@@ -1,7 +1,7 @@
 package com.jacksai.cinema.repository;
 
-import com.jacksai.cinema.model.Show;
+import com.jacksai.cinema.model.Showing;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ShowRepository extends CrudRepository<Show, Long> {
+public interface ShowRepository extends CrudRepository<Showing, Long> {
 }

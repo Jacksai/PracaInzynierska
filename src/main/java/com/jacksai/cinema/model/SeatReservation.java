@@ -20,7 +20,7 @@ public class SeatReservation {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "SHOW_ID")
-    private Show show;
+    private Showing show;
 
     public Long getId() {
         return id;
@@ -46,11 +46,11 @@ public class SeatReservation {
         this.seat = seat;
     }
 
-    public Show getShow() {
+    public Showing getShow() {
         return show;
     }
 
-    public void setShow(Show show) {
+    public void setShow(Showing show) {
         this.show = show;
     }
 }

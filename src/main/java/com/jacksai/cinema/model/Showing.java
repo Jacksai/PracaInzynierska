@@ -5,8 +5,9 @@ import java.sql.Time;
 import java.util.Date;
 
 @Entity
-@Table(name = "SHOW")
-public class Show {
+@Table(name = "SHOWING")
+public class Showing {
+
     @Id @GeneratedValue
     @Column(name = "ID")
     private Long id;
