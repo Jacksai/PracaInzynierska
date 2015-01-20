@@ -37,6 +37,8 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-aop:$springBootVersion")
     compile("org.apache.commons:commons-lang3:3.2.1")
     compile("com.google.guava:guava:16.0.1")
     compile("org.yaml:snakeyaml:1.13")
@@ -45,4 +47,5 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     testCompile("org.hsqldb:hsqldb:2.3.1")
     testCompile("junit:junit:4.11")
+    testCompile("org.mockito:mockito-core:1.10.19")
 }
