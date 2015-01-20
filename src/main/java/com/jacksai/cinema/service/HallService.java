@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class HallService {
@@ -39,4 +41,13 @@ public class HallService {
     }
 
 
+    public Set<Hall> getAllHalls() {
+        HashSet<Hall> halls = new HashSet<>();
+        hallRepository.findAll().forEach((hall)->halls.add(hall));
+        return halls;
+    }
+
+    public Hall getHallById(Long id) {
+        return hallRepository.findOne(id);
+    }
 }
