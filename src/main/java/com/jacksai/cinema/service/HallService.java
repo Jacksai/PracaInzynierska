@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@Transactional
 public class HallService {
 
     @Autowired
@@ -20,7 +20,6 @@ public class HallService {
     @Autowired
     SeatRepository seatRepository;
 
-    @Transactional
     public Hall createHall(Hall hall) {
 
         Hall saved =  hallRepository.save(hall);
@@ -40,14 +39,20 @@ public class HallService {
         return saved;
     }
 
-
     public Set<Hall> getAllHalls() {
-        HashSet<Hall> halls = new HashSet<>();
-        hallRepository.findAll().forEach((hall)->halls.add(hall));
-        return halls;
+        return (Set<Hall>) hallRepository.findAll();
     }
 
-    public Hall getHallById(Long id) {
+    public Hall findOne(Long id) {
         return hallRepository.findOne(id);
+    }
+
+    public Hall updateOne(Long id, Hall hall) {
+        //TODO: Implement
+        return null;
+    }
+
+    public void delete(Long id) {
+        //TODO: Implement deleting hall and all seats
     }
 }

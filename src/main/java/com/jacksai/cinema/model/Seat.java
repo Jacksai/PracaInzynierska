@@ -1,7 +1,7 @@
 package com.jacksai.cinema.model;
 
 import javax.persistence.*;
-//TODO: This entity wont map to hibernate, find out why
+
 @Entity
 @Table(name = "SEAT")
 public class Seat {

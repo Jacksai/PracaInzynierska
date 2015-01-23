@@ -1,45 +1,49 @@
 package com.jacksai.cinema.controllers;
 
-import com.jacksai.cinema.model.Hall;
-import com.jacksai.cinema.service.HallService;
+import com.jacksai.cinema.model.Movie;
+import com.jacksai.cinema.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Set;
+import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/halls")
-public class HallController {
+@RequestMapping("api/movies")
+public class MovieController {
+
+    private MovieService movieService;
 
     @Autowired
-    HallService hallService;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Hall create(@RequestBody Hall hall) {
-        return hallService.createHall(hall);
+    public Movie create(@RequestBody @Valid Movie movie) {
+        return movieService.save(movie);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Hall> list() {
-        return hallService.getAllHalls();
+    public List<Movie> list() {
+        return movieService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Hall get(@PathVariable Long id) {
-        return hallService.findOne(id);
+    public Movie get(@PathVariable Long id) {
+        return movieService.find(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Hall update(@PathVariable Long id, @RequestBody @Valid Hall hall) {
-        return hallService.updateOne(id, hall);
+    public Movie update(@PathVariable Long id, @RequestBody @Valid Movie movie) {
+        return movieService.save(movie);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-        hallService.delete(id);
+        movieService.delete(id);
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
 

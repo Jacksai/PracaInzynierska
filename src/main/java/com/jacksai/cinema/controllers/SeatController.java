@@ -1,7 +1,7 @@
 package com.jacksai.cinema.controllers;
 
-import com.jacksai.cinema.model.User;
-import com.jacksai.cinema.service.UserService;
+import com.jacksai.cinema.model.Seat;
+import com.jacksai.cinema.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,39 +11,39 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/users")
-public class UserController {
+@RequestMapping("/api/seats")
+public class SeatController {
 
-    private UserService userService;
+    private SeatService seatService;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public SeatController(SeatService seatService) {
+        this.seatService = seatService;
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    public User create(@RequestBody @Valid User user) {
-        return userService.save(user);
+    public Seat create(@RequestBody @Valid Seat seat) {
+        return this.seatService.save(seat);
     }
 
     @RequestMapping(method=RequestMethod.GET)
-    public List<User> list() {
-        return userService.findAll();
+    public List<Seat> list() {
+        return this.seatService.findAll();
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public User get(@PathVariable long id) {
-        return userService.findOne(id);
+    public Seat get(@PathVariable long id) {
+        return this.seatService.findOne(id);
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-    public User update(@PathVariable("id") long id, @RequestBody @Valid User user) {
-        return userService.save(user);
+    public Seat update(@PathVariable long id, @RequestBody @Valid Seat seat) {
+        return seatService.save(seat);
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public ResponseEntity<Boolean> delete(@PathVariable long id) {
-        userService.delete(id);
+        this.seatService.delete(id);
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
 }
