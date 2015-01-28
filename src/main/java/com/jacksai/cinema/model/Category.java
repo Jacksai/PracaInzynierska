@@ -2,6 +2,7 @@ package com.jacksai.cinema.model;
 
 import javax.persistence.*;
 import javax.validation.Constraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "CATEGORY")
@@ -12,6 +13,7 @@ public class Category {
     private Long id;
 
     @Column(name = "CATEGORY_NAME", unique = true)
+    @NotNull(message = "Category name should not be null")
     private String name;
 
     public Long getId() {
