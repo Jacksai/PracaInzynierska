@@ -1,4 +1,4 @@
-var CineMVC = angular.module("CineMVC",['ngRoute', 'ngResource']);
+var CineMVC = angular.module("CineMVC",['ngRoute', 'ngResource', 'ui.bootstrap']);
 
 CineMVC.config(['$routeProvider',
     function($routeProvider) {
@@ -6,6 +6,10 @@ CineMVC.config(['$routeProvider',
             .when('/', {
                 templateUrl: 'partials/index.html',
                 controller: 'IndexController'
+            })
+            .when('/movies', {
+                templateUrl: 'partials/movies.html',
+                controller: 'MovieController'
             })
             .otherwise({
                 redirectTo: '/'
