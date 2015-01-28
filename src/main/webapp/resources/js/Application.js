@@ -1,4 +1,4 @@
-var CineMVC = angular.module("CineMVC",['ngRoute']);
+var CineMVC = angular.module("CineMVC",['ngRoute', 'ngResource']);
 
 CineMVC.config(['$routeProvider',
     function($routeProvider) {
