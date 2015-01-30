@@ -16,8 +16,9 @@ public class MovieService {
     private CategoryRepository categoryRepository;
 
     @Autowired
-    public MovieService(MovieRepository movieRepository) {
+    public MovieService(MovieRepository movieRepository, CategoryRepository categoryRepository) {
         this.movieRepository = movieRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public Movie save(Movie movie) {
