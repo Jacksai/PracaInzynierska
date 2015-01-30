@@ -38,7 +38,7 @@ class MovieServiceTest extends Specification {
         given:
             def movie = new Movie()
             def category = new Category()
-            category.id = 2
+            category.name = "NEW CATEGORY"
             movie.category = category
 
         when: "saving movie with new category"
@@ -46,6 +46,7 @@ class MovieServiceTest extends Specification {
 
         then: "category is saved"
             1 * categoryRepository.save(_)
+            1 * movieRepository.save(_)
     }
 
     def "should save movie by repository"() {
@@ -62,6 +63,27 @@ class MovieServiceTest extends Specification {
         then: "movie is saved by repository"
             1 * movieRepository.save(_)
 
+    }
+
+    def "movie is deleted without deleting category"() {
+
+        given:
+            def movie = new Movie()
+            movie.id = 0
+
+        when: "movie is deleted"
+            movieService.delete(movie.id)
+
+        then: "category is not deleted"
+         1 * movieRepository.delete(_)
+         0 * categoryRepository.delete(_)
+    }
+
+    def "MovieService should find all movies"() {
+        when:
+            movieService.findAll()
+        then:
+            1 * movieRepository.findAll()
     }
 
 }

@@ -1,6 +1,5 @@
 package com.jacksai.cinema.service;
 
-import com.jacksai.cinema.model.Category;
 import com.jacksai.cinema.model.Movie;
 import com.jacksai.cinema.repository.CategoryRepository;
 import com.jacksai.cinema.repository.MovieRepository;
@@ -23,9 +22,7 @@ public class MovieService {
 
     public Movie save(Movie movie) {
 
-        Category cat = categoryRepository.findOne(movie.getCategory().getId());
-
-        if(cat == null) {
+        if(movie.getCategory().getId() == null) {
             categoryRepository.save(movie.getCategory());
         }
         return movieRepository.save(movie);
