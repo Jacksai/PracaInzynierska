@@ -14,6 +14,7 @@ class MovieServiceTest extends Specification {
     MovieRepository movieRepository = Mock()
     def categoryRepository = Mock(CategoryRepository){
         findOne(2) >> null
+        findOne(3) >> new Category()
     }
 
     MovieService movieService
@@ -40,11 +41,27 @@ class MovieServiceTest extends Specification {
             category.id = 2
             movie.category = category
 
-        when: "saving movie with new cateogry"
+        when: "saving movie with new category"
             movieService.save(movie)
 
         then: "category is saved"
             1 * categoryRepository.save(_)
+    }
+
+    def "should save movie by repository"() {
+
+        given:
+            def movie = new Movie()
+            def category = new Category()
+            category.id = 3
+            movie.category = category
+
+        when: "user saves movie"
+            movieService.save(movie)
+
+        then: "movie is saved by repository"
+            1 * movieRepository.save(_)
+
     }
 
 }
