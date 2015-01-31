@@ -11,34 +11,25 @@ import spock.lang.Specification
 @RunWith(Sputnik)
 class MovieServiceTest extends Specification {
 
-    MovieRepository movieRepository = Mock()
-    def categoryRepository = Mock(CategoryRepository){
-        findOne(2) >> null
-        findOne(3) >> new Category()
-    }
+    def movieRepository = Mock(MovieRepository)
+    def categoryRepository = Mock(CategoryRepository)
+    def movieService = new MovieService(movieRepository, categoryRepository)
 
-    MovieService movieService
-
-    def setup() {
-        movieService = new MovieService(movieRepository, categoryRepository)
-    }
-
-    def "should forward finding movie to repository"() {
+    def "should find movie by repository"() {
 
         when: "request for specific movie is sent"
-        movieService.find(12)
+        movieService.find(1)
 
         then: "repository should look for it"
         1 * movieRepository.findOne(_)
-
     }
 
-    def "should save category when it does not exist"() {
+    def "should save category when it is not in repository"() {
 
         given:
             def movie = new Movie()
             def category = new Category()
-            category.name = "NEW CATEGORY"
+            category.name = "categoryName"
             movie.category = category
 
         when: "saving movie with new category"
@@ -51,11 +42,13 @@ class MovieServiceTest extends Specification {
 
     def "should save movie by repository"() {
 
+        //TODO: Extract initializing movie and cat to setup method
         given:
             def movie = new Movie()
             def category = new Category()
-            category.id = 3
+            category.id = 1;
             movie.category = category
+            categoryRepository.findOne(_) >> category
 
         when: "user saves movie"
             movieService.save(movie)
@@ -65,7 +58,7 @@ class MovieServiceTest extends Specification {
 
     }
 
-    def "movie is deleted without deleting category"() {
+    def "should delete movie without deleting category"() {
 
         given:
             def movie = new Movie()
@@ -79,9 +72,11 @@ class MovieServiceTest extends Specification {
          0 * categoryRepository.delete(_)
     }
 
-    def "MovieService should find all movies"() {
+    def "should find all movies from repository"() {
+
         when:
             movieService.findAll()
+
         then:
             1 * movieRepository.findAll()
     }

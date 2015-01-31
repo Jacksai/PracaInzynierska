@@ -6,19 +6,25 @@ import com.jacksai.cinema.repository.HallRepository;
 import com.jacksai.cinema.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Set;
 
 @Service
 @Transactional
 public class HallService {
 
-    @Autowired
-    HallRepository hallRepository;
+    private HallRepository hallRepository;
+
+    private SeatRepository seatRepository;
 
     @Autowired
-    SeatRepository seatRepository;
+    public HallService(HallRepository hallRepository, SeatRepository seatRepository) {
+        this.hallRepository = hallRepository;
+        this.seatRepository = seatRepository;
+    }
 
     public Hall createHall(Hall hall) {
 
@@ -39,7 +45,7 @@ public class HallService {
         return saved;
     }
 
-    public Set<Hall> getAllHalls() {
+    public Set<Hall> findAll() {
         return (Set<Hall>) hallRepository.findAll();
     }
 
@@ -48,11 +54,28 @@ public class HallService {
     }
 
     public Hall updateOne(Long id, Hall hall) {
-        //TODO: Implement
-        return null;
+
+        if(hallRepository.findOne(id) != null) {
+            return hallRepository.save(hall);
+        } else {
+            return null;
+        }
+
     }
 
     public void delete(Long id) {
-        //TODO: Implement deleting hall and all seats
+
+        Hall hall = hallRepository.findOne(id);
+
+        if(hall != null) {
+            List<Seat> seats = seatRepository.findSeatsByHallId(id);
+
+            for(Seat seat : seats)
+                seatRepository.delete(seat);
+
+            hallRepository.delete(hall);
+        }
+
     }
+
 }

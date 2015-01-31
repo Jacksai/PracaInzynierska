@@ -24,7 +24,7 @@ public class HallController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Set<Hall> list() {
-        return hallService.getAllHalls();
+        return hallService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -1,6 +1,5 @@
 package com.jacksai.cinema.service;
 
-import com.jacksai.cinema.controllers.ShowingController;
 import com.jacksai.cinema.model.Showing;
 import com.jacksai.cinema.repository.ShowingRepository;
 import org.springframework.beans.factory.annotation.Autowired;

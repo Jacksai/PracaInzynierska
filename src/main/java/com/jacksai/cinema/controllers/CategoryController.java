@@ -43,7 +43,8 @@ public class CategoryController {
 
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public ResponseEntity<Boolean> delete(@PathVariable("id") long id) {
-        this.categoryService.delete(id);
+        Category category = categoryService.findOne(id);
+        this.categoryService.delete(category);
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
 }
