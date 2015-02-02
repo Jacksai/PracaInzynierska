@@ -58,19 +58,20 @@
 
             <div class="form-row">
 
-
-
                 <div class="form-inline">
 
                     <div class="form-group" style="width: 49%">
                         <label for="movieFilmwebGrade">Filmweb Grade:</label>
                         <input  ng-model="movie.filmwebGrade" id="movieFilmwebGrade" class="form-control" type="number" placeholder="Filmweb grade" style="width: 100%"/>
                     </div>
+
                     <div class="form-group"  style="width: 49%; float: right;">
                         <label for="movieFilmwebGrade">Viewers Grade:</label>
                         <input ng-model="movie.viewersGrade" id="movieViewersGrade" class="form-control" type="number" placeholder="Viewers Grade" style="width: 100%"/>
                     </div>
+
                 </div>
+
             </div>
 
             <div class="form-row">
@@ -88,11 +89,14 @@
                 <label for="movieMinimumAge">Minimm Age</label>
                 <input ng-model="movie.minimumAge" id="movieMinimumAge" class="form-control" type="text" placeholder="Minimum age"/>
             </div>
+
         </div>
+
     </div>
 
     <div class="modal-footer">
         <button class="btn btn-success" ng-click="saveMovie()">Save</button>
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
+
 </script>
