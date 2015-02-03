@@ -14,6 +14,16 @@ class MovieServiceTest extends Specification {
     def movieRepository = Mock(MovieRepository)
     def categoryRepository = Mock(CategoryRepository)
     def movieService = new MovieService(movieRepository, categoryRepository)
+    def movie
+    def category
+
+    def setup() {
+        movie = new Movie()
+        movie.id = 1
+        category = new Category()
+        category.name = "categoryName"
+        movie.category = category
+    }
 
     def "should find movie by repository"() {
 
@@ -26,12 +36,6 @@ class MovieServiceTest extends Specification {
 
     def "should save category when it is not in repository"() {
 
-        given:
-            def movie = new Movie()
-            def category = new Category()
-            category.name = "categoryName"
-            movie.category = category
-
         when: "saving movie with new category"
             movieService.save(movie)
 
@@ -42,12 +46,7 @@ class MovieServiceTest extends Specification {
 
     def "should save movie by repository"() {
 
-        //TODO: Extract initializing movie and cat to setup method
         given:
-            def movie = new Movie()
-            def category = new Category()
-            category.id = 1;
-            movie.category = category
             categoryRepository.findOne(_) >> category
 
         when: "user saves movie"
@@ -59,10 +58,6 @@ class MovieServiceTest extends Specification {
     }
 
     def "should delete movie without deleting category"() {
-
-        given:
-            def movie = new Movie()
-            movie.id = 0
 
         when: "movie is deleted"
             movieService.delete(movie.id)

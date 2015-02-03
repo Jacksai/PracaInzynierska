@@ -15,13 +15,13 @@ class CategoryServiceTest extends Specification {
     def "should save and return categories from repository"() {
 
         given:
-        def category = new Category();
+            def category = new Category();
 
         when:
-        categoryService.save(category)
+            categoryService.save(category)
 
         then:
-        1 * categoryRepository.save(_)
+            1 * categoryRepository.save(_)
 
     }
 
