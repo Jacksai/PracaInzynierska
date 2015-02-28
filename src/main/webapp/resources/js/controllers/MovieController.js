@@ -1,56 +1,91 @@
-CineMVC.controller('MovieController', ['$scope', '$http', '$modal', 'Movie','Category', function ($scope, $http, $modal, Movie, Category) {
+(function () {
+    'use strict';
 
-    $scope.movies = Movie.query();
+    angular
+        .module('CineMVC')
+        .controller('MovieController', MovieController);
 
-    $scope.editMovie = function(movie) {
-        console.log("Edit movie" + JSON.stringify(movie));
-    }
+    MovieController.$inject = ['$scope', '$http', '$modal', 'Movie','Category'];
 
-    $scope.deleteMovie = function(movie) {
-        console.log("Delete movie" + JSON.stringify(movie));
-    }
+    function MovieController($scope, $http, $modal, Movie, Category) {
 
-    $scope.createMovie = function() {
 
-        var modalInstance = $modal.open({
-            templateUrl: 'createMovieModal.html',
-            controller: 'CreateMovieController',
-            resolve: {
-                movie: function () {
-                    return $scope.newMovie;
+        $scope.movies = Movie.query();
+
+        $scope.editMovie = function(movie) {
+            console.log("Edit movie" + JSON.stringify(movie));
+
+            var modalInstance = $modal.open({
+                templateUrl: 'createMovieModal.html',
+                controller: 'CreateMovieController',
+                resolve: {
+                    movie: function () {
+                        return movie;
+                    }
                 }
-            }
-        })
+            })
+
+        };
+
+        $scope.deleteMovie = function(movie) {
+
+            console.log("Delete movie" + JSON.stringify(movie));
+            Movie.delete(movie);
+        };
+
+        $scope.createMovie = function() {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'createMovieModal.html',
+                controller: 'CreateMovieController',
+                resolve: {
+                    movie: function () {
+                        return $scope.newMovie;
+                    }
+                }
+            })
+        }
+
     }
 
-}]);
+    angular
+        .module('CineMVC')
+        .controller("CreateMovieController",CreateMovieController);
 
-CineMVC.controller("CreateMovieController",  function ($scope, $modalInstance, Category,Movie, movie) {
+    CreateMovieController.$inject = ['$scope', '$modalInstance', 'Category', 'Movie', 'movie'];
 
-    $scope.movie = {active : true}
-    $scope.categories =  Category.query();
+    function CreateMovieController($scope, $modalInstance, Category,Movie, movie) {
 
-    $scope.saveMovie = function () {
-        console.log("Saving movie: " + JSON.stringify($scope.movie));
+        var vm = $scope;
 
-        Movie.save($scope.movie, function (successResult) {
-            console.log("SAVING SUCCESS: " + JSON.stringify(successResult));
-            $modalInstance.close($scope.movie);
-        }, function (errorResult) {
+        vm.movie = movie;
+        vm.categories =  Category.query();
+        vm.saveMovie = saveMovie;
+        vm.cancel = cancel;
+        vm.validationErros = null;
 
-            console.log("ERROR:" + JSON.stringify(errorResult));
+         function saveMovie() {
+            console.log("Saving movie: " + JSON.stringify($scope.movie));
 
-            if(errorResult.data.ValidationErrors) {
-                //VALIDATION ERRORS
-                console.log("ValidationErrors" + JSON.stringify(errorResult.data.ValidationErrors))
-                $scope.validationErrors = errorResult.data.ValidationErrors ;
-            }
+            Movie.save($scope.movie, function (successResult) {
+                console.log("SAVING SUCCESS: " + JSON.stringify(successResult));
+                $modalInstance.close($scope.movie);
+            }, function (errorResult) {
 
-        });
-    };
+                console.log("ERROR:" + JSON.stringify(errorResult));
 
-    $scope.cancel = function () {
-        $modalInstance.close();
-    };
-});
+                if(errorResult.data.ValidationErrors) {
+                    //VALIDATION ERRORS
+                    console.log("ValidationErrors" + JSON.stringify(errorResult.data.ValidationErrors))
+                    $scope.validationErrors = errorResult.data.ValidationErrors ;
+                }
 
+            });
+        }
+
+       function cancel() {
+            $modalInstance.close();
+        }
+    }
+
+})();

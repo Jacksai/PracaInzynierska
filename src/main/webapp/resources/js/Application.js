@@ -1,17 +1,32 @@
-var CineMVC = angular.module("CineMVC",['ngRoute', 'ngResource', 'ui.bootstrap']);
+(function () {
+    'use strict';
 
-CineMVC.config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: 'partials/index.html',
-                controller: 'IndexController'
-            })
-            .when('/movies', {
-                templateUrl: 'partials/movies.html',
-                controller: 'MovieController'
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
-    }]);
+    angular
+        .module('CineMVC',['ngRoute', 'ngResource', 'ui.bootstrap']);
+
+    angular
+        .module('CineMVC')
+        .config(['$routeProvider',
+        function($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'partials/index.html',
+                    controller: 'IndexController'
+                })
+                .when('/movies', {
+                    templateUrl: 'partials/movies.html',
+                    controller: 'MovieController'
+                })
+                .when('/halls',{
+                    templateUrl: 'partials/hall.html',
+                    controller: 'HallController'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+        }]);
+
+})();
+
+
+

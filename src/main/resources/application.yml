@@ -27,10 +27,10 @@ spring:
   profiles: test
 
   datasource:
-    driverClassName: org.hsqldb.jdbc.JDBCDriver
-    url: jdbc:hsqldb:mem:blog
-    username: sa
-    password:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cinemaTest
+    username: root
+    password: root
 
   jpa:
     open-in-view: true
