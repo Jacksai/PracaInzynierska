@@ -21,6 +21,10 @@
                     templateUrl: 'partials/hall.html',
                     controller: 'HallController'
                 })
+                .when('/categories', {
+                    templateUrl: 'partials/category.html',
+                    controller: 'CategoryController'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
