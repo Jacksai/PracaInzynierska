@@ -10,9 +10,14 @@
     function MovieController($scope, $http, $modal, Movie, Category) {
 
 
-        $scope.movies = Movie.query();
+        var vm = $scope;
 
-        $scope.editMovie = function(movie) {
+        vm.movies = Movie.query();
+        vm.editMovie = editMovie;
+        vm.deleteMovie = deleteMovie;
+        vm.createMovie = createMovie;
+
+        function editMovie (movie) {
             console.log("Edit movie" + JSON.stringify(movie));
 
             var modalInstance = $modal.open({
@@ -24,23 +29,20 @@
                     }
                 }
             })
+        }
 
-        };
-
-        $scope.deleteMovie = function(movie) {
-
+        function deleteMovie(movie) {
             console.log("Delete movie" + JSON.stringify(movie));
             Movie.delete(movie);
-        };
+        }
 
-        $scope.createMovie = function() {
-
+        function createMovie() {
             var modalInstance = $modal.open({
                 templateUrl: 'createMovieModal.html',
                 controller: 'CreateMovieController',
                 resolve: {
                     movie: function () {
-                        return $scope.newMovie;
+                        return vm.newMovie;
                     }
                 }
             })
@@ -54,13 +56,13 @@
 
     CreateMovieController.$inject = ['$scope', '$modalInstance', 'Category', 'Movie', 'movie'];
 
-    function CreateMovieController($scope, $modalInstance, Category,Movie, movie) {
+    function CreateMovieController($scope, $modalInstance, Category, Movie, movie) {
 
         var vm = $scope;
 
         vm.movie = movie;
         vm.categories =  Category.query();
-        vm.saveMovie = saveMovie;
+        vm.saveCategory = saveMovie;
         vm.cancel = cancel;
         vm.validationErros = null;
 

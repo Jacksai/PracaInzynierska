@@ -3,8 +3,12 @@
 
     angular
         .module('CineMVC')
-        .factory('Hall', function($resource) {
+        .factory('Hall', HallResource);
+
+    HallResource.$inject = ['$resource'];
+
+    function HallResource($resource) {
         return $resource('/api/halls/:id');
-    });
+    }
 
 })();

@@ -4,7 +4,7 @@
     angular
         .module('CineMVC')
         .factory('Category', function($resource) {
-        return $resource('/api/categories/:id');
+        return $resource('/api/categories/:id', {id: '@id'});
     });
 
 })();

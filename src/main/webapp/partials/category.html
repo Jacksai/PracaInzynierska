@@ -19,12 +19,13 @@
     </tr>
     </tbody>
 </table>
+<button ng-click="createCategory()" class="btn btn-default">Create Category</button>
 
 
-<script type="text/ng-template" id="createMovieModal.html">
+<script type="text/ng-template" id="createCategoryModal.html">
 
     <div class="modal-header">
-        <h3 class="modal-title">Create new movie</h3>
+        <h3 class="modal-title">Create new category</h3>
     </div>
     <div class="modal-body">
         <!-- ERRORS -->
@@ -40,55 +41,17 @@
         <div class="form-group">
 
             <div class="form-row">
-                <label for="movieTitle">Title:</label>
-                <input ng-model="movie.title" id="movieTitle" class="form-control" type="text" placeholder="Title"/>
+                <label for="movieTitle">Name:</label>
+                <input ng-model="category.name" id="movieTitle" class="form-control" type="text" placeholder="Category Name"/>
             </div>
 
-            <div class="form-row">
-                <label for="movieDescription">Description:</label>
-                <textarea ng-model="movie.description" id="movieDescription" class="form-control" rows="3" placeholder="Description" ></textarea>
-            </div>
-
-            <div class="form-row">
-
-                <div class="form-inline">
-
-                    <div class="form-group" style="width: 49%">
-                        <label for="movieFilmwebGrade">Filmweb Grade:</label>
-                        <input  ng-model="movie.filmwebGrade" id="movieFilmwebGrade" class="form-control" type="number" placeholder="Filmweb grade" style="width: 100%"/>
-                    </div>
-
-                    <div class="form-group"  style="width: 49%; float: right;">
-                        <label for="movieFilmwebGrade">Viewers Grade:</label>
-                        <input ng-model="movie.viewersGrade" id="movieViewersGrade" class="form-control" type="number" placeholder="Viewers Grade" style="width: 100%"/>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="form-row">
-                <label for="movieCategory">Category</label>
-                <select ng-model="movie.category" ng-options="category.name for category in categories" id="movieCategory" class="form-control" >
-                </select>
-            </div>
-
-            <div class="form-row">
-                <label for="movieLength">Length in minutes:</label>
-                <input ng-model="movie.length" id="movieLength" class="form-control" type="text" placeholder="Length in minutes"/>
-            </div>
-
-            <div class="form-row">
-                <label for="movieMinimumAge">Minimm Age</label>
-                <input ng-model="movie.minimumAge" id="movieMinimumAge" class="form-control" type="text" placeholder="Minimum age"/>
-            </div>
 
         </div>
 
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-success" ng-click="saveMovie()">Save</button>
+        <button class="btn btn-success" ng-click="saveCategory()">Save</button>
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
 
