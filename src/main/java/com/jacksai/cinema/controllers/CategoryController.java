@@ -36,7 +36,7 @@ public class CategoryController {
         return this.categoryService.findOne(id);
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+    @RequestMapping(value="/{id}", method=RequestMethod.POST)
     public Category update(@PathVariable long id, @RequestBody @Valid Category category) {
         return categoryService.save(category);
     }

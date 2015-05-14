@@ -25,6 +25,17 @@
 
             function editCategory(category) {
                 console.log('Edit category: ' + JSON.stringify(category));
+
+                var modalInstance = $modal.open({
+                    templateUrl: 'createCategoryModal.html',
+                    controller: 'CreateCategoryController',
+                    resolve: {
+                        category: function () {
+                            return category;
+                        }
+                    }
+                })
+
             }
 
             function deleteCategory(category) {
@@ -39,7 +50,7 @@
                         controller: 'CreateCategoryController',
                         resolve: {
                             category: function () {
-                                return vm.newCategory;
+                                return {};
                             }
                         }
                     })
@@ -61,8 +72,10 @@
         vm.cancel = cancel;
         vm.validationErros = null;
 
+        var backupCategory = angular.copy(category);
+
         function saveCategory() {
-            console.log("Saving movie: " + JSON.stringify($scope.movie));
+            console.log("Saving movie: " + JSON.stringify($scope.category));
 
             Category.save(vm.category, function (successResult) {
                 console.log("SAVING SUCCESS: " + JSON.stringify(successResult));
@@ -81,6 +94,7 @@
         }
 
         function cancel() {
+            category = backupCategory;
             $modalInstance.close();
         }
     }

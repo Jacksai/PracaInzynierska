@@ -1,6 +1,8 @@
 package com.jacksai.cinema.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "HALL")
@@ -11,12 +13,15 @@ public class Hall {
     private Long id;
 
     @Column(name = "NAME")
+    @Size(min = 3, max = 50, message = "Hall name length should be between 3 and 50 characters")
     private String name;
 
     @Column(name = "XLENGTH")
+    @Max(value = 30, message = "Hall columns number should be lesser then 30")
     private int xLength;
 
     @Column(name = "YLENGTH")
+    @Max(value = 30, message = "Hall rows number should be lesser then 30")
     private int yLength;
 
     @Column(name = "IS_ACTIVE")

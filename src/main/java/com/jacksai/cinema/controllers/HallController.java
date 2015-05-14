@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -23,7 +24,7 @@ public class HallController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Hall> list() {
+    public List<Hall> list() {
         return hallService.findAll();
     }
 

@@ -9,7 +9,6 @@
 
     function MovieController($scope, $http, $modal, Movie, Category) {
 
-
         var vm = $scope;
 
         vm.movies = Movie.query();
@@ -69,7 +68,7 @@
          function saveMovie() {
             console.log("Saving movie: " + JSON.stringify($scope.movie));
 
-            Movie.save($scope.movie, function (successResult) {
+            Movie.save(vm.movie, function (successResult) {
                 console.log("SAVING SUCCESS: " + JSON.stringify(successResult));
                 $modalInstance.close($scope.movie);
             }, function (errorResult) {
