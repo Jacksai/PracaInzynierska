@@ -29,11 +29,18 @@ public class HallService {
 
     public Hall createHall(Hall hall) {
 
-        Hall saved =  hallRepository.save(hall);
+        //checking if hallExists
+        if(hall.getId() != null && hallRepository.findOne(hall.getId()) != null) {
+            seatRepository.findSeatsByHallId(hall.getId())
+                    .stream()
+                    .forEach(seat -> seatRepository.delete(seat));
+        }
+
+        Hall saved = hallRepository.save(hall);
 
         //Creating hall for position
         for (int i = 0; i < hall.getxLength(); i++) {
-            for (int j = 0; j < hall.getyLength() ; j++) {
+            for (int j = 0; j < hall.getyLength(); j++) {
                 Seat seat = new Seat();
                 seat.setxPosition(i);
                 seat.setyPosition(j);
@@ -44,23 +51,15 @@ public class HallService {
                 seatRepository.save(seat);
             }
         }
+
         return saved;
+
     }
 
     public List<Hall> findAll() {  return (List<Hall>)hallRepository.findAll(); }
 
     public Hall findOne(Long id) {
         return hallRepository.findOne(id);
-    }
-
-    public Hall updateOne(Long id, Hall hall) {
-
-        if(hallRepository.findOne(id) != null) {
-            return hallRepository.save(hall);
-        } else {
-            return null;
-        }
-
     }
 
     public void delete(Long id) {
@@ -80,4 +79,7 @@ public class HallService {
 
     }
 
+    public Hall updateOne(Long id, Hall hall) {
+        return null;
+    }
 }

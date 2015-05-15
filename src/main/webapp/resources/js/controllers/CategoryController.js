@@ -17,9 +17,9 @@
             vm.createCategory = createCategory;
             vm.newCategory = {};
 
-            loadData();
+            reloadCategories();
 
-            function loadData() {
+            function reloadCategories() {
                 vm.categories = Category.query();
             }
 
@@ -39,8 +39,8 @@
             }
 
             function deleteCategory(category) {
-                category.$delete(function() {
-                    loadData();
+                Category.delete(category).$promise.then(function(){
+                    reloadCategories();
                 });
             }
 
@@ -53,7 +53,11 @@
                                 return {};
                             }
                         }
-                    })
+                    }).result.then(function(){
+                            reloadCategories();
+                        }, function () {
+                            reloadCategories();
+                        });
             }
     }
 

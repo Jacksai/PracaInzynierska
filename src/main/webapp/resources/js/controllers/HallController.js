@@ -10,6 +10,7 @@
             vm.halls = [];
             vm.createHall = createHall;
             vm.deleteHall = deleteHall;
+            vm.editHall = editHall;
 
             reloadHalls();
 
@@ -17,22 +18,36 @@
                 vm.halls = Hall.query();
             }
 
+            function editHall(hall) {
+                var modalInstance = $modal.open({
+                    templateUrl: 'partials/createHallModal.html',
+                    controller: 'CreateHallController',
+                    resolve: {
+                        hall: function () {
+                            return hall;
+                        }
+                    }
+                });
+            }
 
             function createHall() {
                 var modalInstance = $modal.open({
-                    templateUrl: 'createHallModal.html',
+                    templateUrl: 'partials/createHallModal.html',
                     controller: 'CreateHallController',
                     resolve: {
                         hall: function () {
                             return {};
                         }
                     }
-                })
+                }).result.then(function () {
+                        reloadHalls();
+                    });
             }
 
             function deleteHall(hall) {
-                Hall.delete(hall);
-               setTimeout(reloadHalls(), 1000);
+                Hall.delete(hall).$promise.then(function () {
+                    reloadHalls();
+                });
             }
 
     }])

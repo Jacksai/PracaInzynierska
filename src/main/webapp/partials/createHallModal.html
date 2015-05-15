@@ -1,0 +1,47 @@
+    <div class="modal-header">
+        <h3 class="modal-title">Create new Hall</h3>
+    </div>
+    <div class="modal-body">
+        <!-- ERRORS -->
+        <div ng-show="validationErrors">
+            <div ng-repeat="(field, error) in validationErrors">
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>{{error}}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <label for="hallName">Name:</label>
+                <input ng-model="hall.name"  class="form-control" type="text" placeholder="Hall name" id="hallName"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row"><label for="hallColumns">Seat Columns Number</label>
+                <input ng-model="hall.xLength" type="number" min="1" class="form-control" id="hallColumns" placeholder="Number of columns"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <label for="hallRows">Seat Rows Number</label>
+                <input ng-model="hall.yLength" class="form-control" type="number" min="1" id="hallRows" placeholder="Number of rows"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <label for="hallIsActive">Is Active</label>
+                <input ng-model="hall.active" type="checkbox" id="hallIsActive"/>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="saveHall()">Save</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+
