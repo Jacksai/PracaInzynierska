@@ -22,8 +22,12 @@
                     controller: 'HallController'
                 })
                 .when('/categories', {
-                    templateUrl: 'partials/category.html',
+                    templateUrl: 'partials/categories.html',
                     controller: 'CategoryController'
+                })
+                .when('/showings', {
+                    templateUrl: 'partials/showings.html',
+                    controller: 'ShowingController'
                 })
                 .otherwise({
                     redirectTo: '/'

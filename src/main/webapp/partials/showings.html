@@ -1,0 +1,35 @@
+<h3>Showing</h3>
+
+{{showings}}
+
+<table class="table table-bordered table-stripped">
+    <thead>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Hour</th>
+        <th>Movie</th>
+        <th>Hall</th>
+        <th></th>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="show in showings">
+            <td>{{show.id}}</td>
+            <td>{{show.date | date: 'dd-MM-yyyy'}}</td>
+            <td>{{show.hour}}</td>
+            <td>{{show.movie.title}}</td>
+            <td>{{show.hall.name}}</td>
+            <td>
+                <button ng-click="editShow(show)" class="btn btn-warning">
+                    <i class="icon-edit icon-white"></i>
+                    Edit
+                </button>
+                <button ng-click="deleteShow(show)" class="btn btn-danger">
+                    <i class="icon-trash icon-white"></i>
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
