@@ -30,11 +30,10 @@ public class ShowingService {
     }
 
     public Showing update(Long id, Showing showing) {
-        //TODO: Implement this shit
-        return null;
+        return showingRepository.save(showing);
     }
 
     public void delete(Long id) {
         //TODO: IMPLEMENT THIS SHIT
-    }
+         showingRepository.delete(id);    }
 }

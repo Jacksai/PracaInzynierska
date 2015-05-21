@@ -20,48 +20,90 @@
         loadShows();
 
         function editShow(show) {
-
-        }
+            console.log('Editing show: ' + angular.toJson(show));
+            openModal(show);       }
 
         function deleteShow(show) {
+            show.$delete().then(function () {
+                console.log('usuniêto');
+                loadShows();
+            });
 
         }
 
         function createNewShow() {
-            console.log('Creating new show');
+            openModal({});
+        }
 
+        function openModal(showToEdit) {
             var modalInstance = $modal.open({
                 templateUrl: 'partials/createShowingModal.html',
                 controller: 'CreateShowController',
                 resolve: {
                     showing: function () {
-                        return {};
+                        return showToEdit;
                     }
                 }
             }).result.then(function () {
                     loadShows();
                 });
-
         }
 
         function loadShows() {
             vm.showings = Showing.query();
         }
 
-
-
     }
 
-    CreateShowController.$inject = ['$scope', 'showing', 'Showing','Movie', 'Hall'];
+    CreateShowController.$inject = ['$scope', 'showing', 'Showing','Movie', 'Hall', '$modalInstance'];
 
-    function CreateShowController ($scope, showing, Showing, Movie, Hall) {
+    function CreateShowController ($scope, showing, Showing, Movie, Hall, $modalInstance) {
 
         var vm = $scope;
 
-        vm.showing = showing;
+        //vm.halls = Hall.query();
+        //vm.movies = Movie.query();
+        //vm.showing = showing;
+        vm.saveShow = saveShow;
+        vm.cancel = cancel;
+        vm.validationErrors = [];
 
+        init();
 
+        function init() {
+            console.log('Showing' + angular.toJson(vm.showing));
 
+            vm.halls = Hall.query();
+            vm.movies = Movie.query();
+
+            vm.halls.$promise.then(function () {
+                vm.movies.$promise.then(function () {
+                    vm.showing = showing;
+                });
+            });
+        }
+
+        function saveShow () {
+            console.log('Saving show: ' + angular.toJson(vm.showing));
+
+            Showing.save(vm.showing, function (data) {
+                //Successful save
+                console.log("SAVING SUCCESS: " + JSON.stringify(data));
+                $modalInstance.close(vm.showing);
+
+            }, function (reason) {
+                //Save failed
+                if(reason.data.ValidationErrors) {
+                    //VALIDATION ERRORS
+                    console.log("ValidationErrors" + JSON.stringify(reason.data.ValidationErrors))
+                    $scope.validationErrors = reason.data.ValidationErrors ;
+                }
+            })
+        }
+
+        function cancel() {
+            $modalInstance.close();
+        }
     }
 
 })();

@@ -36,7 +36,7 @@ public class ShowingController {
         return showingService.findOne(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Showing update(@PathVariable Long id, @RequestBody @Valid Showing showing) {
         return showingService.update(id, showing);
     }

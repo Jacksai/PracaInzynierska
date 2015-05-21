@@ -34,8 +34,7 @@
                             return category;
                         }
                     }
-                })
-
+                });
             }
 
             function deleteCategory(category) {

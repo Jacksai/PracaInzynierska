@@ -15,47 +15,23 @@
     <div class="form-group">
 
         <div class="form-row">
-            <label for="movieTitle">Title:</label>
-            <input ng-model="movie.title" id="movieTitle" class="form-control" type="text" placeholder="Title"/>
+            <label for="showingDates">Date:</label>
+            <datepicker ng-model="showing.date" class="well"></datepicker>
         </div>
 
         <div class="form-row">
-            <label for="movieDescription">Description:</label>
-            <textarea ng-model="movie.description" id="movieDescription" class="form-control" rows="3" placeholder="Description" ></textarea>
+            <label for="movieTitle">Hour:</label>
+            <input ng-model="showing.hour" id="movieTitle" class="form-control" type="text" placeholder="Hour"/>
         </div>
 
         <div class="form-row">
-
-            <div class="form-inline">
-
-                <div class="form-group" style="width: 49%">
-                    <label for="movieFilmwebGrade">Filmweb Grade:</label>
-                    <input  ng-model="movie.filmwebGrade" id="movieFilmwebGrade" class="form-control" type="number" placeholder="Filmweb grade" style="width: 100%"/>
-                </div>
-
-                <div class="form-group"  style="width: 49%; float: right;">
-                    <label for="movieFilmwebGrade">Viewers Grade:</label>
-                    <input ng-model="movie.viewersGrade" id="movieViewersGrade" class="form-control" type="number" placeholder="Viewers Grade" style="width: 100%"/>
-                </div>
-
-            </div>
-
+            <label for="showingHall">Hall:</label>
+            <select ng-model="showing.hall" ng-options="hall.name for hall in halls" class="form-control" id="showingHall"></select>
         </div>
 
         <div class="form-row">
-            <label for="movieCategory">Category</label>
-            <select ng-model="movie.category" ng-options="category.name for category in categories" id="movieCategory" class="form-control" >
-            </select>
-        </div>
-
-        <div class="form-row">
-            <label for="movieLength">Length in minutes:</label>
-            <input ng-model="movie.length" id="movieLength" class="form-control" type="text" placeholder="Length in minutes"/>
-        </div>
-
-        <div class="form-row">
-            <label for="movieMinimumAge">Minimm Age</label>
-            <input ng-model="movie.minimumAge" id="movieMinimumAge" class="form-control" type="text" placeholder="Minimum age"/>
+            <label for="showingMovie">Movie:</label>
+            <select ng-model="showing.movie" ng-options="movie.title for movie in movies" class="form-control" id="showingMovie"></select>
         </div>
 
     </div>
