@@ -29,6 +29,10 @@
                     templateUrl: 'showings/showings.html',
                     controller: 'ShowingController'
                 })
+                .when('/showings/:showId', {
+                    templateUrl: 'showings/showingDetails.html',
+                    controller: 'ShowingDetailController'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });

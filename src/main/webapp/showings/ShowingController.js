@@ -86,7 +86,7 @@
                 //Save failed
                 if(reason.data.ValidationErrors) {
                     //VALIDATION ERRORS
-                    console.log("ValidationErrors" + JSON.stringify(reason.data.ValidationErrors))
+                    console.log("ValidationErrors" + JSON.stringify(reason.data.ValidationErrors));
                     $scope.validationErrors = reason.data.ValidationErrors ;
                 }
             })

@@ -1,0 +1,13 @@
+<h4>Reservation</h4>
+{{pendingShows}}
+
+<div class="showInfo" ng-repeat="show in pendingShows">
+  <div class="showTitle">
+    Movie: {{show.movie.title}}
+  </div>
+
+<div class="showDate">
+  Date: {{show.date | date : 'yyyy/MM/dd' }}
+</div>
+
+</div>
