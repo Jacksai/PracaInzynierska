@@ -1,0 +1,30 @@
+.showInfo {
+  background-color: gray;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.show-buttons {
+  margin-top: -30px;
+  margin-right: -5px;
+}
+
+.seat-rows {
+  display: inline-block;
+}
+
+.seat {
+  background-color: gray;
+  border-radius: 4px;
+  height: 40px;
+  width: 40px;
+  margin: 3px;
+}
+.seat-active {
+  background-color: #7FFF00 !important;
+}
+
+.reservation-seat {
+  display: inline-flex;
+}

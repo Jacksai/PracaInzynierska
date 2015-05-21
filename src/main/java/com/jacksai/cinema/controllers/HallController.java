@@ -1,6 +1,7 @@
 package com.jacksai.cinema.controllers;
 
 import com.jacksai.cinema.model.Hall;
+import com.jacksai.cinema.model.Seat;
 import com.jacksai.cinema.service.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,11 @@ public class HallController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Hall get(@PathVariable Long id) {
         return hallService.findOne(id);
+    }
+
+    @RequestMapping(value = "/{id}/seats", method = RequestMethod.GET)
+    public List<Seat> getSeatsForHall(@PathVariable Long hallId) {
+        return hallService.getSeatsForHall(hallId);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

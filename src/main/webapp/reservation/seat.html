@@ -1,0 +1,24 @@
+<h3>Chose Your Seat</h3>
+ <div class="hallInfo">
+     {{hall}}
+ </div>
+<div class="reservation-seat">
+
+    <div class="hall-schema">
+        <div class="seat-rows" ng-repeat="x in [] | range: hallWidth">
+            <div ng-repeat="y in [] | range: hallHeight">
+                <div ng-class="{'seat-active': isSeatSelected(x,y)}" class="seat" ng-click="onSeatClick(x,y)">
+                    x:{{x}},
+                    y:{{y}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info pull-right col-xs-4">
+        SOMETHING
+    </div>
+
+
+
+</div>

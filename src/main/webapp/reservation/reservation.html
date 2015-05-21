@@ -1,13 +1,30 @@
 <h4>Reservation</h4>
-{{pendingShows}}
+<div class="col-xs-8">
+    <div class="showInfo" ng-repeat="show in pendingShows">
+        <div class="showTitle">
+            Movie: {{show.movie.title}}
+        </div>
 
-<div class="showInfo" ng-repeat="show in pendingShows">
-  <div class="showTitle">
-    Movie: {{show.movie.title}}
-  </div>
+        <div class="show-movie-description">
+            Desc: {{show.movie.description}}
+        </div>
 
-<div class="showDate">
-  Date: {{show.date | date : 'yyyy/MM/dd' }}
-</div>
+        <div class="showDate">
+            Date: {{show.date | date : 'yyyy/MM/dd' }}
+        </div>
+
+        <div class="showHall">
+            Hall: {{show.hall.name}}
+        </div>
+
+        <div class="showHour">
+            Hour: {{show.hour}}
+        </div>
+
+        <div class="show-buttons pull-right">
+            <button class="btn btn-success" ng-click="reservation(show)">Reservation</button>
+        </div>
+
+    </div>
 
 </div>

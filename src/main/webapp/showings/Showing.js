@@ -3,8 +3,12 @@
 
     angular
         .module('CineMVC')
-        .factory('Showing', function($resource) {
-            return $resource('/api/showings/:id', {id: '@id'});
-        });
+        .factory('Showing', Showing);
+
+    Showing.$inject = ['$resource'];
+
+    function Showing( $resource) {
+        return $resource('/api/showings/:id', {id: '@id'});
+    }
 
 })();
