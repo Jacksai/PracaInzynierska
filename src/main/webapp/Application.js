@@ -10,23 +10,23 @@
         function($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'partials/index.html',
+                    templateUrl: 'index/index.html',
                     controller: 'IndexController'
                 })
                 .when('/movies', {
-                    templateUrl: 'partials/movies.html',
+                    templateUrl: 'movies/movies.html',
                     controller: 'MovieController'
                 })
                 .when('/halls',{
-                    templateUrl: 'partials/hall.html',
+                    templateUrl: 'halls/hall.html',
                     controller: 'HallController'
                 })
                 .when('/categories', {
-                    templateUrl: 'partials/categories.html',
+                    templateUrl: 'categories/categories.html',
                     controller: 'CategoryController'
                 })
                 .when('/showings', {
-                    templateUrl: 'partials/showings.html',
+                    templateUrl: 'showings/showings.html',
                     controller: 'ShowingController'
                 })
                 .otherwise({

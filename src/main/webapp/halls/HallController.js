@@ -18,30 +18,26 @@
                 vm.halls = Hall.query();
             }
 
-            function editHall(hall) {
+            function openModal(hallToEdit) {
                 var modalInstance = $modal.open({
-                    templateUrl: 'partials/createHallModal.html',
+                    templateUrl: 'halls/createHallModal.html',
                     controller: 'CreateHallController',
                     resolve: {
                         hall: function () {
-                            return hall;
-                        }
-                    }
-                });
-            }
-
-            function createHall() {
-                var modalInstance = $modal.open({
-                    templateUrl: 'partials/createHallModal.html',
-                    controller: 'CreateHallController',
-                    resolve: {
-                        hall: function () {
-                            return {};
+                            return hallToEdit;
                         }
                     }
                 }).result.then(function () {
                         reloadHalls();
                     });
+            }
+
+            function editHall(hall) {
+                openModal(hall);
+            }
+
+            function createHall() {
+              openModal({});
             }
 
             function deleteHall(hall) {

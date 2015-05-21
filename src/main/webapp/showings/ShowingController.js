@@ -37,7 +37,7 @@
 
         function openModal(showToEdit) {
             var modalInstance = $modal.open({
-                templateUrl: 'partials/createShowingModal.html',
+                templateUrl: 'showings/createShowingModal.html',
                 controller: 'CreateShowController',
                 resolve: {
                     showing: function () {
