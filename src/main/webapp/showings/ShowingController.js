@@ -25,7 +25,6 @@
 
         function deleteShow(show) {
             show.$delete().then(function () {
-                console.log('usuniêto');
                 loadShows();
             });
 
@@ -89,7 +88,7 @@
                     console.log("ValidationErrors" + JSON.stringify(reason.data.ValidationErrors));
                     $scope.validationErrors = reason.data.ValidationErrors ;
                 }
-            })
+            });
         }
 
         function cancel() {

@@ -7,7 +7,6 @@
                 .when('/reservation', {
                     templateUrl: 'reservation/reservation.html',
                     controller: 'ReservationController'
-                })
-
-    }])
+                });
+    }]);
 })();

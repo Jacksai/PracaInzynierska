@@ -89,7 +89,7 @@
 
                 if(errorResult.data.ValidationErrors) {
                     //VALIDATION ERRORS
-                    console.log("ValidationErrors" + JSON.stringify(errorResult.data.ValidationErrors))
+                    console.log("ValidationErrors" + JSON.stringify(errorResult.data.ValidationErrors));
                     $scope.validationErrors = errorResult.data.ValidationErrors ;
                 }
 

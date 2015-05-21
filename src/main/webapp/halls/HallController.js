@@ -50,10 +50,10 @@
         .controller('CreateHallController', ['$scope', '$modalInstance', 'hall', 'Hall',function($scope,$modalInstance , hall, Hall){
 
             var vm = $scope;
+
             vm.hall = hall;
             vm.saveHall = saveHall;
             vm.cancel = cancel;
-            vm.validationErrors
 
             function saveHall() {
                 console.log('Saving hall' + angular.toJson(hall));
@@ -61,12 +61,12 @@
                 Hall.save(hall, function(succesResult) {
                     //Saving successfully
                     console.log("Hall saved successfully : " + angular.toJson(hall));
-                    $modalInstance.close(vm.hall)
+                    $modalInstance.close(vm.hall);
                 }, function(errorResult) {
                     //Error in saving
                     if(errorResult.data.ValidationErrors) {
                         //VALIDATION ERRORS
-                        console.log("ValidationErrors" + JSON.stringify(errorResult.data.ValidationErrors))
+                        console.log("ValidationErrors" + JSON.stringify(errorResult.data.ValidationErrors));
                         $scope.validationErrors = errorResult.data.ValidationErrors ;
                     }
                 });
@@ -80,4 +80,3 @@
         }]);
 
 })();
-

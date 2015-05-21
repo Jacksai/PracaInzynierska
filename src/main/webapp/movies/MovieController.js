@@ -27,7 +27,7 @@
                         return movie;
                     }
                 }
-            })
+            });
         }
 
         function deleteMovie(movie) {
@@ -44,14 +44,14 @@
                         return {};
                     }
                 }
-            })
+            });
         }
 
     }
 
     angular
         .module('CineMVC')
-        .controller("CreateMovieController",CreateMovieController);
+        .controller("CreateMovieController", CreateMovieController);
 
     CreateMovieController.$inject = ['$scope', '$modalInstance', 'Category', 'Movie', 'movie'];
 
@@ -77,7 +77,7 @@
 
                 if(errorResult.data.ValidationErrors) {
                     //VALIDATION ERRORS
-                    console.log("ValidationErrors" + JSON.stringify(errorResult.data.ValidationErrors))
+                    console.log("ValidationErrors" + JSON.stringify(errorResult.data.ValidationErrors));
                     $scope.validationErrors = errorResult.data.ValidationErrors ;
                 }
 
