@@ -41,7 +41,7 @@
                 controller: 'CreateMovieController',
                 resolve: {
                     movie: function () {
-                        return vm.newMovie;
+                        return {};
                     }
                 }
             })
@@ -61,7 +61,7 @@
 
         vm.movie = movie;
         vm.categories =  Category.query();
-        vm.saveCategory = saveMovie;
+        vm.saveMovie = saveMovie;
         vm.cancel = cancel;
         vm.validationErros = null;
 
