@@ -61,9 +61,9 @@
 
         var vm = $scope;
 
-        //vm.halls = Hall.query();
-        //vm.movies = Movie.query();
-        //vm.showing = showing;
+        vm.halls = Hall.query();
+        vm.movies = Movie.query();
+        vm.showing = showing;
         vm.saveShow = saveShow;
         vm.cancel = cancel;
         vm.validationErrors = [];
@@ -72,15 +72,6 @@
 
         function init() {
             console.log('Showing' + angular.toJson(vm.showing));
-
-            vm.halls = Hall.query();
-            vm.movies = Movie.query();
-
-            vm.halls.$promise.then(function () {
-                vm.movies.$promise.then(function () {
-                    vm.showing = showing;
-                });
-            });
         }
 
         function saveShow () {
