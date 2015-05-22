@@ -19,6 +19,5 @@
             $location.path('reservation/'+ showing.id +'/seat');
         }
 
-
     }
 })();

@@ -1,24 +1,86 @@
-<h3>Chose Your Seat</h3>
- <div class="hallInfo">
-     {{hall}}
- </div>
-<div class="reservation-seat">
+<div ng-show="reservationStep == 1">
+    <h3>Chose Your Seat</h3>
 
-    <div class="hall-schema">
-        <div class="seat-rows" ng-repeat="x in [] | range: hallWidth">
-            <div ng-repeat="y in [] | range: hallHeight">
-                <div ng-class="{'seat-active': isSeatSelected(x,y)}" class="seat" ng-click="onSeatClick(x,y)">
-                    x:{{x}},
-                    y:{{y}}
+    <div class="hallInfo">
+        <button ng-click="bookSeats()" class="btn btn-info">
+            Book Seats
+        </button>
+    </div>
+
+    <div class="reservation-seat">
+        <div class="hall-schema">
+            <div class="seat-rows" ng-repeat="x in [] | range: hallWidth">
+                <div ng-repeat="y in [] | range: hallHeight">
+                    <div ng-class="{'seat-active': isSeatSelected(x,y)}" class="seat" ng-click="onSeatClick(x,y)">
+                        {{y * hallWidth + x + 1}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="info pull-right col-xs-4">
-        SOMETHING
+<div ng-show="reservationStep == 2">
+    <h3>Fill your information</h3>
+    <button ng-click="backStep()" class="btn btn-success">back</button>
+
+    <div class="form-group col-xs-4">
+
+        <div class="form-row">
+            <label>Name:</label>
+            <input ng-model="reservation.name" placeholder="Name" class="form-control" type="text"/>
+        </div>
+
+        <div class="form-row">
+            <label>Surname:</label>
+            <input ng-model="reservation.surname" placeholder="Surname" class="form-control" type="text"/>
+        </div>
+
+        <div class="form-row">
+            <label>Email:</label>
+            <input ng-model="reservation.email" placeholder="Email" class="form-control" type="text"/>
+        </div>
+
+        <div class="form-row">
+            <label>Phone:</label>
+            <input ng-model="reservation.phoneNumber" placeholder="Phone" class="form-control" type="text"/>
+        </div>
+
+        <div class="form-row">
+            <button ng-click="confirmBooking()" class="btn btn-success">Confirm Booking</button>
+        </div>
+
+        <!--<div class="form-row">-->
+            <!--<label for="movieTitle">Title:</label>-->
+            <!--<input ng-model="movie.title" id="movieTitle" class="form-control" type="text" placeholder="Title"/>-->
+        <!--</div>-->
+
+        <!--<div class="form-row">-->
+            <!--<label for="movieDescription">Description:</label>-->
+            <!--<textarea ng-model="movie.description" id="movieDescription" class="form-control" rows="3" placeholder="Description" ></textarea>-->
+        <!--</div>-->
+
+        <!--<div class="form-row">-->
+            <!--<label for="movieCategory">Category</label>-->
+            <!--<select ng-model="movie.category" ng-options="category.name for category in categories" id="movieCategory" class="form-control" >-->
+            <!--</select>-->
+        <!--</div>-->
+
+        <!--<div class="form-row">-->
+            <!--<label for="movieLength">Length in minutes:</label>-->
+            <!--<input ng-model="movie.length" id="movieLength" class="form-control" type="text" placeholder="Length in minutes"/>-->
+        <!--</div>-->
+
+        <!--<div class="form-row">-->
+            <!--<label for="movieMinimumAge">Minimm Age</label>-->
+            <!--<input ng-model="movie.minimumAge" id="movieMinimumAge" class="form-control" type="text" placeholder="Minimum age"/>-->
+        <!--</div>-->
+
     </div>
 
+</div>
 
+<div ng-show="reservationStep == 3">
+    <h3>Confirm</h3>
 
 </div>
