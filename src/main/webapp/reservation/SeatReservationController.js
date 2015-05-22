@@ -75,7 +75,7 @@
                 vm.savedReservation = data;
 
                 var modalInstance = $modal.open({
-                    templateUrl: 'reservation/summationModal.html',
+                    templateUrl: 'reservation/summation/summationModal.html',
                     controller: 'SummationController',
                     resolve: {
                         reservation: function () {
@@ -83,7 +83,7 @@
                         }
                     }
                 }).result.then(function () {
-                        loadShows();
+                        console.log('Closed ziom');
                     });
 
             });
