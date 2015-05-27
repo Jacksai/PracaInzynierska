@@ -1,3 +1,28 @@
-<h3>
-    <button ng-click="close()" class="btn btn-danger">Usuń</button>
-</h3>
+<div class="modal-header">
+    <h3>Confirm Reservation</h3>
+</div>
+<div class="modal-body">
+    <p>
+        Do you want to confirm reservation for movie
+        <b>
+            {{reservation.show.movie.title}}
+        </b>
+    </p>
+
+    <p>
+        Date: <b>{{reservation.show.date  | date : 'yyyy/MM/dd' }}</b>
+    </p>
+    <p>Hour: <b>{{reservation.show.hour}}</b>
+    </p>
+
+    <p>You are reserving {{seats.length}} seats</p>
+    <p ng-repeat="seat in seats">
+        Row: {{seat.y + 1}}, Place: {{seat.x + 1}}
+    </p>
+
+</div>
+
+<div class="modal-footer">
+    <button ng-click="confirmReservation()" class="btn btn-success">Finalize</button>
+    <button ng-click="close()" class="btn btn-danger">Close</button>
+</div>

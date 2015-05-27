@@ -3,7 +3,8 @@
   'use strict';
   var gulp = require('gulp'),
       jshint = require('gulp-jshint'),
-      sass = require('gulp-sass');
+      sass = require('gulp-sass'),
+      includeSources = require('gulp-include-source');
 
 
   gulp.task('default', ['watch']);
@@ -21,9 +22,15 @@
            .pipe(gulp.dest('./styles'));
     });
 
+    gulp.task('html', function () {
+        return gulp.src('index.html')
+            .pipe(includeSources())
+            .pipe(gulp.dest('WEB-INF/'));
+    });
+
   //configure files for watching
   gulp.task('watch', function() {
-      gulp.watch(['**/*.js','!./node_modules/**','!./libs/**'], ['jshint']);
+      gulp.watch(['**/*.js','!./node_modules/**','!./libs/**'], ['jshint', 'html']);
       gulp.watch('./styles/**/*.scss', ['sass']);
   });
 

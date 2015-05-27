@@ -2,6 +2,7 @@ package com.jacksai.cinema.controllers;
 
 import com.jacksai.cinema.model.SeatReservation;
 import com.jacksai.cinema.service.SeatReservationService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,12 @@ public class SeatReservationController {
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public SeatReservation get(@PathVariable("id") long id) {
         return this.seatReservationService.findOne(id);
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public ResponseEntity<Boolean> reserveList(@RequestBody List<SeatReservation> listOfReservations) {
+        boolean status =  seatReservationService.saveList(listOfReservations);
+        return new ResponseEntity<Boolean>(status, HttpStatus.OK);
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)

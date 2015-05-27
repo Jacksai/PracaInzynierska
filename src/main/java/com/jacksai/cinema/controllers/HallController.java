@@ -35,8 +35,8 @@ public class HallController {
     }
 
     @RequestMapping(value = "/{id}/seats", method = RequestMethod.GET)
-    public List<Seat> getSeatsForHall(@PathVariable Long hallId) {
-        return hallService.getSeatsForHall(hallId);
+    public List<Seat> getSeatsForHall(@PathVariable Long id) {
+        return hallService.getSeatsForHall(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

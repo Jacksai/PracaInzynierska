@@ -3,6 +3,7 @@ package com.jacksai.cinema.service;
 import com.jacksai.cinema.model.SeatReservation;
 import com.jacksai.cinema.repository.SeatReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,5 +35,13 @@ public class SeatReservationService {
 
     public void delete(long id) {
         seatReservationRepository.delete(id);
+    }
+
+    public boolean saveList(List<SeatReservation> listOfReservations) {
+        listOfReservations
+                .stream()
+                .forEach(res -> seatReservationRepository.save(res));
+
+        return true;
     }
 }

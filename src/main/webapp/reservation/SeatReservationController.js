@@ -33,7 +33,6 @@
                 vm.hallHeight = vm.hall.yLength;
                 vm.hallWidth = vm.hall.xLength;
                 vm.reservation.show = data;
-                console.log(vm);
             });
         }
 
@@ -50,7 +49,6 @@
                     vm.selectedSeats.splice(index, 1);
                 }
             }
-
         }
 
         function isSeatSelected(x, y) {
@@ -80,12 +78,12 @@
                     resolve: {
                         reservation: function () {
                             return vm.savedReservation;
+                        },
+                        seats: function () {
+                            return vm.selectedSeats;
                         }
                     }
-                }).result.then(function () {
-                        console.log('Closed ziom');
-                    });
-
+                });
             });
         }
 
