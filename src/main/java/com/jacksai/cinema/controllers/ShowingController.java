@@ -1,5 +1,6 @@
 package com.jacksai.cinema.controllers;
 
+import com.jacksai.cinema.model.Seat;
 import com.jacksai.cinema.model.Showing;
 import com.jacksai.cinema.service.ShowingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,11 @@ public class ShowingController {
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         showingService.delete(id);
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{showId}/freeSeats", method = RequestMethod.GET)
+    public List<Seat> getFreeSeatsForShowing(@PathVariable Long showId) {
+        return showingService.getFreeSeatsForShowing(showId);
 
     }
 
