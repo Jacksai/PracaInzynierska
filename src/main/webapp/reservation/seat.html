@@ -11,7 +11,7 @@
         <div class="hall-schema">
             <div class="seat-rows" ng-repeat="x in [] | range: hallWidth">
                 <div ng-repeat="y in [] | range: hallHeight">
-                    <div ng-class="{'seat-active': isSeatSelected(x,y)}" class="seat" ng-click="onSeatClick(x,y)">
+                    <div ng-class="{'seat-active': isSeatSelected(x,y), 'seat-reserved': !isSeatFreeForReservation(x,y)}" class="seat" ng-click="onSeatClick(x,y)">
                         {{y * hallWidth + x + 1}}
                     </div>
                 </div>

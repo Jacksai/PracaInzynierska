@@ -8,7 +8,9 @@
     Showing.$inject = ['$resource'];
 
     function Showing( $resource) {
-        return $resource('/api/showings/:id', {id: '@id'});
+        return $resource('/api/showings/:id', {id: '@id'}, {
+            freeSeats: {method: 'GET', params: {id: '@id'}, url: '/api/showings/:id/freeSeats', isArray: true}
+        });
     }
 
 })();

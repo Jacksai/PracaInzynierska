@@ -60,6 +60,9 @@
 .seat-active {
   background-color: #7FFF00 !important; }
 
+.seat-reserved {
+  background-color: red !important; }
+
 .reservation-seat {
   display: inline-flex; }
 

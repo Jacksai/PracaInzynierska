@@ -15,15 +15,16 @@
         vm.hall = {};
         vm.showing = {};
         vm.selectedSeats = [];
+        vm.freeSeats = [];
         vm.reservation = {};
         vm.reservationStep = 1;
 
         vm.onSeatClick = onSeatClick;
         vm.isSeatSelected = isSeatSelected;
+        vm.isSeatFreeForReservation = isSeatFreeForReservation;
         vm.bookSeats = bookSeats;
         vm.backStep = backStep;
         vm.confirmBooking = confirmBooking;
-
 
         init();
 
@@ -34,11 +35,21 @@
                 vm.hallWidth = vm.hall.xLength;
                 vm.reservation.show = data;
             });
+
+            Showing
+                .freeSeats({'id': vm.showId})
+                .$promise
+                .then(function(data){
+                    vm.freeSeats = data;
+                    console.log('Free seats loaded');
+                    console.log(angular.toJson(data));
+                });
         }
 
         function onSeatClick(x, y) {
             if(!isSeatSelected(x, y)) {
-                vm.selectedSeats.push({'x': x, 'y': y});
+                if(isSeatFreeForReservation(x, y))
+                    vm.selectedSeats.push({'x': x, 'y': y});
             } else {
                 var obj = vm.selectedSeats.filter(function (seat) {
                     return seat.x === x && seat.y === y;
@@ -57,8 +68,13 @@
             }).length > 0;
         }
 
+        function isSeatFreeForReservation(x, y) {
+            return vm.freeSeats.filter(function (seat) {
+               return seat.xPosition === x && seat.yPosition === y;
+            }).length > 0;
+        }
+
         function bookSeats() {
-            console.log('Booking seats' + angular.toJson(vm.selectedSeats));
             vm.reservationStep = 2;
         }
 
@@ -67,7 +83,6 @@
         }
 
         function confirmBooking() {
-            console.log('Reservations: ' + angular.toJson(vm.reservation));
             calculateSeatCount();
             Reservation.save(vm.reservation).$promise.then(function (data) {
                 vm.savedReservation = data;

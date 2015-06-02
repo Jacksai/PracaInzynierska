@@ -4,7 +4,8 @@
   var gulp = require('gulp'),
       jshint = require('gulp-jshint'),
       sass = require('gulp-sass'),
-      includeSources = require('gulp-include-source');
+      includeSources = require('gulp-include-source'),
+      bootlint  = require('gulp-bootlint');
 
 
   gulp.task('default', ['watch']);
@@ -14,6 +15,11 @@
         return gulp.src(['**/*.js','!./node_modules/**/*.js','!./libs/*.js'])
             .pipe(jshint())
             .pipe(jshint.reporter('jshint-stylish'));
+    });
+
+    gulp.task('bootlint', function () {
+        return gulp.src('./reservation/*.html')
+            .pipe(bootlint());
     });
 
     gulp.task('sass', function () {
