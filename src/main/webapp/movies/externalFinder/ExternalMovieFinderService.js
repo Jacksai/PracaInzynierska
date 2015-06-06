@@ -31,6 +31,19 @@
             return defered.promise;
         };
 
+        this.saveMovie = function (movie) {
+
+            var defered = $q.defer();
+
+            $http.post('/api/externalMovieFinder/save', movie)
+                .success(function(data) {
+               defered.resolve(data);
+            });
+
+            return defered.promise;
+
+        };
+
         return this;
     }
 

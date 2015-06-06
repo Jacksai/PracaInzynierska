@@ -59,7 +59,13 @@ public class ShowingService {
                 .map(SeatReservation::getSeat)
                 .collect(Collectors.toList());
 
-        return seatsInHall.stream().filter(s -> !reservedSeats.contains(s)).collect(Collectors.toList());
+        if(reservedSeats.isEmpty()) {
+            return seatsInHall;
+        } else {
+            return seatsInHall.stream().filter(s -> !reservedSeats.contains(s)).collect(Collectors.toList());
+        }
+
+
 
     }
 }

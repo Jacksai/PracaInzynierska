@@ -4,10 +4,9 @@ import com.jacksai.cinema.moviedb.MovieDbService;
 import com.jacksai.cinema.moviedb.model.MovieDBMovieSearchResponse;
 import com.jacksai.cinema.moviedb.model.MovieDBSpecificMovieModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/externalMovieFinder")
@@ -24,6 +23,11 @@ public class ExternalMovieFinderController {
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
     public MovieDBSpecificMovieModel getMovieDetails(@PathVariable Long id) {
         return movieDbService.getMovieDetails(id);
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ResponseEntity<Boolean> saveExternalMovieIntoDatabase(@RequestBody MovieDBSpecificMovieModel movieModel) {
+        return new ResponseEntity<Boolean>( movieDbService.saveMovie(movieModel), HttpStatus.OK);
     }
 
 

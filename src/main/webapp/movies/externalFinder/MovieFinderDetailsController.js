@@ -19,7 +19,9 @@
         init();
 
         function save() {
-            console.log('Saving movie');
+            ExternalMovieFinderService.saveMovie(vm.movieDetails).then(function (data) {
+               console.log('Success in saving movie');
+            });
         }
 
         function init() {

@@ -18,7 +18,6 @@
         vm.addFromExternalSource = addFromExternalSource;
 
         function editMovie (movie) {
-            console.log("Edit movie" + JSON.stringify(movie));
 
             var modalInstance = $modal.open({
                 templateUrl: 'createMovieModal.html',
@@ -32,7 +31,6 @@
         }
 
         function deleteMovie(movie) {
-            console.log("Delete movie" + JSON.stringify(movie));
             Movie.delete(movie);
         }
 
@@ -47,11 +45,6 @@
                 }
             });
         }
-
-        function addFromExternalSource() {
-            console.log("Adding");
-        }
-
     }
 
     angular
@@ -77,8 +70,6 @@
                 console.log("SAVING SUCCESS: " + JSON.stringify(successResult));
                 $modalInstance.close($scope.movie);
             }, function (errorResult) {
-
-                console.log("ERROR:" + JSON.stringify(errorResult));
 
                 if(errorResult.data.ValidationErrors) {
                     //VALIDATION ERRORS

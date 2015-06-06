@@ -2,15 +2,14 @@ package com.jacksai.cinema.moviedb;
 
 import com.jacksai.cinema.model.Category;
 import com.jacksai.cinema.model.Movie;
-import com.jacksai.cinema.moviedb.model.MovieDBGenreListResponse;
-import com.jacksai.cinema.moviedb.model.MovieDBMovieModel;
-import com.jacksai.cinema.moviedb.model.MovieDBMovieSearchResponse;
-import com.jacksai.cinema.moviedb.model.MovieDBSpecificMovieModel;
+import com.jacksai.cinema.moviedb.model.*;
 import com.jacksai.cinema.repository.CategoryRepository;
 import com.jacksai.cinema.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Optional;
 
 @Service
 public class MovieDbService {
@@ -61,6 +60,44 @@ public class MovieDbService {
         MovieDBSpecificMovieModel movie = restTemplate.getForObject(API_URL + "/movie/" + id.toString() + URL_ENDING_WITHOUT_QUERY, MovieDBSpecificMovieModel.class);
 
         return movie;
+    }
+
+    public Boolean saveMovie(MovieDBSpecificMovieModel movieModel) {
+        Movie localModel = new Movie();
+
+        localModel.setTitle(movieModel.getOriginal_title());
+        localModel.setActive(true);
+
+        //Finding category to save
+        Optional<MovieDBGenreModel> categoryOptional = movieModel.getGenres().stream().filter((cat) -> categoryRepository.findByName(cat.getName()) != null).findFirst();
+
+        if(categoryOptional.isPresent()) {
+            Category category = categoryRepository.findByName(categoryOptional.get().getName());
+            localModel.setCategory(category);
+        } else {
+            //Save first category to repo and save it
+            Category category = new Category();
+            Optional<MovieDBGenreModel> genre = movieModel.getGenres().stream().findFirst();
+
+            if(genre.isPresent()) {
+                category.setName(genre.get().getName());
+            } else {
+                return false;
+            }
+
+            categoryRepository.save(category);
+            localModel.setCategory(category);
+        }
+
+        localModel.setDescription(movieModel.getOverview().substring(0, 255));
+        localModel.setFilmwebGrade(movieModel.getVote_average().floatValue());
+        localModel.setViewersGrade(movieModel.getVote_average().floatValue());
+        localModel.setLength(120);
+
+
+        movieRepository.save(localModel);
+        return true;
+
     }
 
 //
