@@ -13,10 +13,6 @@
                     templateUrl: 'index/index.html',
                     controller: 'IndexController'
                 })
-                .when('/movies', {
-                    templateUrl: 'movies/movies.html',
-                    controller: 'MovieController'
-                })
                 .when('/halls',{
                     templateUrl: 'halls/hall.html',
                     controller: 'HallController'

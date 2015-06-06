@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col-sm-4">
+            <input type="text" placeholder="Movie Title" name="" class="form-control" ng-model="movieTitle" id="movieTitle"/>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-success" ng-click="searchMovie()">Search</button>
+        </div>
+        <span></span>
+    </div>
+
+
+    <div class="row" ng-repeat="movie in foundMovies">
+        <div class="col-sm-8" >
+            <div class="jumbotron">
+                <div>
+                    <label for="title">Title:</label><span id="title">{{movie.title}}</span>
+                </div>
+
+                <div>
+                    <label for="description">Description:</label><span id="description">{{movie.overview}}</span>
+                </div>
+
+                <div>
+                    <label for="releaseDate">Release Date:</label><span id="releaseDate">{{movie.release_date}}</span>
+                </div>
+
+                <div class="pull-right">
+                    <a href="#/movies/external/{{movie.id}}" class="btn btn-default">Show details</a>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>

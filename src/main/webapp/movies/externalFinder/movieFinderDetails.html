@@ -1,0 +1,37 @@
+<div class="container">
+
+    <div class="row">
+        <div class="jumbotron">
+
+            <div>
+                <label for="originalTitle">
+                    Original Title:
+                </label>
+                <span id="originalTitle">
+                    {{movieDetails.original_title}}
+                </span>
+            </div>
+
+            <div>
+                <label for="description">Description:</label><span id="description">{{movieDetails.overview}}</span>
+            </div>
+
+            <div>
+                <label>
+                    Genres:
+                </label>
+                <span ng-repeat="genre in movieDetails.genres">
+                    {{genre.name}}
+                </span>
+            </div>
+
+            <div><label>Average Grade:</label>
+                <span>{{movieDetails.vote_average}}</span></div>
+
+            <button class="btn btn-success" ng-click="save()">Save to database</button>
+            <a href="#/movies/external" class="btn btn-danger">Cancel Saving</a>
+
+        </div>
+    </div>
+    {{movieDetails}}
+</div>

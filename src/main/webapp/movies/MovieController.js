@@ -15,6 +15,7 @@
         vm.editMovie = editMovie;
         vm.deleteMovie = deleteMovie;
         vm.createMovie = createMovie;
+        vm.addFromExternalSource = addFromExternalSource;
 
         function editMovie (movie) {
             console.log("Edit movie" + JSON.stringify(movie));
@@ -45,6 +46,10 @@
                     }
                 }
             });
+        }
+
+        function addFromExternalSource() {
+            console.log("Adding");
         }
 
     }

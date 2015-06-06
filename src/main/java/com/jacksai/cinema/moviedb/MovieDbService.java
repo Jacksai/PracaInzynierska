@@ -5,6 +5,7 @@ import com.jacksai.cinema.model.Movie;
 import com.jacksai.cinema.moviedb.model.MovieDBGenreListResponse;
 import com.jacksai.cinema.moviedb.model.MovieDBMovieModel;
 import com.jacksai.cinema.moviedb.model.MovieDBMovieSearchResponse;
+import com.jacksai.cinema.moviedb.model.MovieDBSpecificMovieModel;
 import com.jacksai.cinema.repository.CategoryRepository;
 import com.jacksai.cinema.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,15 @@ public class MovieDbService {
 
     }
 
-    publi
+    public MovieDBSpecificMovieModel getMovieDetails(Long id) {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        MovieDBSpecificMovieModel movie = restTemplate.getForObject(API_URL + "/movie/" + id.toString() + URL_ENDING_WITHOUT_QUERY, MovieDBSpecificMovieModel.class);
+
+        return movie;
+    }
+
 //
 //    public boolean saveMovieToLocalDatabase (MovieDBMovieModel movie) {
 //
