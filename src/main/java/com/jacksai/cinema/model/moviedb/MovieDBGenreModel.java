@@ -1,4 +1,4 @@
-package com.jacksai.cinema.moviedb.model;
+package com.jacksai.cinema.model.moviedb;
 
 
 public class MovieDBGenreModel {

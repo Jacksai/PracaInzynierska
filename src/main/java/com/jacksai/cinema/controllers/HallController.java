@@ -44,10 +44,4 @@ public class HallController {
         return hallService.updateOne(id, hall);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-        hallService.delete(id);
-        return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
-    }
-
 }

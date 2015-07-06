@@ -1,8 +1,8 @@
 package com.jacksai.cinema.controllers;
 
-import com.jacksai.cinema.moviedb.MovieDbService;
-import com.jacksai.cinema.moviedb.model.MovieDBMovieSearchResponse;
-import com.jacksai.cinema.moviedb.model.MovieDBSpecificMovieModel;
+import com.jacksai.cinema.service.MovieDbService;
+import com.jacksai.cinema.model.moviedb.MovieDBMovieSearchResponse;
+import com.jacksai.cinema.model.moviedb.MovieDBSpecificMovieModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,11 @@
-package com.jacksai.cinema.moviedb;
+package com.jacksai.cinema.service;
 
 import com.jacksai.cinema.model.Category;
 import com.jacksai.cinema.model.Movie;
-import com.jacksai.cinema.moviedb.model.*;
+import com.jacksai.cinema.model.moviedb.MovieDBGenreListResponse;
+import com.jacksai.cinema.model.moviedb.MovieDBGenreModel;
+import com.jacksai.cinema.model.moviedb.MovieDBMovieSearchResponse;
+import com.jacksai.cinema.model.moviedb.MovieDBSpecificMovieModel;
 import com.jacksai.cinema.repository.CategoryRepository;
 import com.jacksai.cinema.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;

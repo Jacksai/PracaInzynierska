@@ -1,12 +1,6 @@
 <div ng-show="reservationStep == 1">
     <h3>Chose Your Seat</h3>
 
-    <div class="hallInfo">
-        <button ng-click="bookSeats()" class="btn btn-info">
-            Book Seats
-        </button>
-    </div>
-
     <div class="reservation-seat">
         <div class="hall-schema">
             <div class="seat-rows" ng-repeat="x in [] | range: hallWidth">
@@ -20,9 +14,15 @@
     </div>
 </div>
 
+<div class="hallInfo">
+    <button ng-click="bookSeats()" class="btn btn-info">
+        Book Seats
+    </button>
+</div>
+
 <div ng-show="reservationStep == 2">
     <h3>Fill your information</h3>
-    <button ng-click="backStep()" class="btn btn-success">back</button>
+
 
     <div class="form-group col-xs-4">
 
@@ -48,6 +48,7 @@
 
         <div class="form-row">
             <button ng-click="confirmBooking()" class="btn btn-success">Confirm Booking</button>
+            <button ng-click="backStep()" class="btn btn-danger">back</button>
         </div>
 
     </div>

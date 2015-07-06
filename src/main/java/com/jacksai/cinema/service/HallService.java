@@ -80,7 +80,7 @@ public class HallService {
     }
 
     public Hall updateOne(Long id, Hall hall) {
-        return null;
+        return hallRepository.save(hall);
     }
 
     public List<Seat> getSeatsForHall(Long hallId) {

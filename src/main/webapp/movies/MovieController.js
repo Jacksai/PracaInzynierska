@@ -15,7 +15,6 @@
         vm.editMovie = editMovie;
         vm.deleteMovie = deleteMovie;
         vm.createMovie = createMovie;
-        vm.addFromExternalSource = addFromExternalSource;
 
         function editMovie (movie) {
 
@@ -45,6 +44,8 @@
                 }
             });
         }
+
+
     }
 
     angular
